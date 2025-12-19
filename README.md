@@ -78,9 +78,41 @@ Built with React, Vite, Recharts, and Plotly, this tool provides a premium "Glas
 ## ☁️ Deployment (Railway)
 
 The project is pre-configured for **Railway**.
-1. Push to GitHub.
-2. Link repository in Railway.
-3. The `npm start` command will automatically launch the Express server.
+
+### Quick Deploy Steps:
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for Railway deployment"
+   git push origin main
+   ```
+
+2. **Deploy on Railway**
+   - Go to [Railway.app](https://railway.app)
+   - Click "New Project" → "Deploy from GitHub repo"
+   - Select your repository
+   - Railway will automatically:
+     - Detect Node.js project
+     - Run `npm install`
+     - Run `npm run build` (from railway.json)
+     - Run `npm start` to launch the server
+
+3. **Environment Variables** (Optional)
+   - If you need API keys, add them in Railway dashboard under "Variables"
+   - The app will use `PORT` automatically (Railway sets this)
+
+### Manual Build & Test Locally:
+```bash
+npm run build
+npm start
+# Server will run on http://localhost:3000
+```
+
+### Railway Configuration:
+- Build Command: `npm run build` (auto-detected)
+- Start Command: `npm start` (from package.json)
+- Port: Automatically set by Railway via `PORT` environment variable
 
 ---
 
