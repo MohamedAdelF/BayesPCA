@@ -16,10 +16,21 @@ if (!existsSync(distPath)) {
     process.exit(1);
 }
 
+// Serve static files from dist directory
 app.use(express.static(distPath));
 
 // Handle all routes - serve index.html for SPA routing
-app.get('*', (req, res) => {
+// Express 5 compatibility: use middleware without path pattern (catches all unmatched routes)
+app.use((req, res, next) => {
+    // Check if the request is for a static file (has file extension)
+    const hasExtension = /\.[^/]+$/.test(req.path);
+    
+    if (hasExtension) {
+        // If it's a static file request and wasn't found, return 404
+        return res.status(404).send('File not found');
+    }
+    
+    // For all other routes (SPA routes), serve index.html
     const indexPath = join(distPath, 'index.html');
     if (existsSync(indexPath)) {
         res.sendFile(indexPath);
