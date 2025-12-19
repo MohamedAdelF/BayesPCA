@@ -1,0 +1,5 @@
+{
+  "name": "Bayesian PCA Explorer",
+  "description": "An interactive web application for exploring Bayesian classification, Covariance analysis, and Principal Component Analysis (PCA) with 3D visualizations and AI-powered data insights.",
+  "requestFramePermissions": []
+}
